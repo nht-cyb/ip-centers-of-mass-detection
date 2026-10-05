@@ -157,3 +157,7 @@ The size limits (`MIN_AREA`, `MAX_AREA`) and `OtsuSensitivity` are tuned for 128
 - A. Gahramanova, *Locating Centers of Mass with Image Processing*, DOI: 10.5038/2326-3652.10.1.4906
 - B. K. P. Horn, *Robot Vision*, MIT Press, 1986
 - K. Demaagd, A. Oliver, *Practical Computer Vision with SimpleCV*, O'Reilly, 2012
+
+## License
+
+Released under the [MIT License](LICENSE).
