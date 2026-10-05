@@ -1,6 +1,6 @@
 import numpy as np
 import cv2
-import image_recognition_singlecam
+import image_recognition
 
 class camera_XYZ:
 
@@ -21,11 +21,11 @@ class camera_XYZ:
 
     def __init__(self):
 
-        imgdir="\inputs/"
+        imgdir="inputs/"
         savedir="camera_data/"
-        self.imageRec=image_recognition_singlecam.image_recognition(False,False,imgdir,imgdir,False,True,False)
+        self.imageRec=image_recognition.image_recognition(False,False,imgdir,imgdir,False,True,False)
 
-        #self.imageRec=image_recognition_singlecam.image_recognition(True,False,imgdir,imgdir,True,True)
+        #self.imageRec=image_recognition.image_recognition(True,False,imgdir,imgdir,True,True)
 
         self.cam_mtx=np.load(savedir+'cam_mtx.npy')
         self.dist=np.load(savedir+'dist.npy')

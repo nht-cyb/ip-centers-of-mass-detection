@@ -1,11 +1,8 @@
 import numpy as np
 import cv2
 import glob
+import os
 import camera_xyz
-
-cameraXYZ=camera_xyz.camera_XYZ()
-
-calculatefromCam=True
 
 imgdir="/home/pi/Desktop/Captures/"
 
@@ -15,6 +12,12 @@ writeValues=False
 
 #load camera calibration
 savedir="camera_data/"
+
+#compare against camera_xyz only once a previous run has saved the extrinsic values
+calculatefromCam=os.path.exists(savedir+'s_arr.npy')
+if calculatefromCam==True:
+    cameraXYZ=camera_xyz.camera_XYZ()
+
 cam_mtx=np.load(savedir+'cam_mtx.npy')
 dist=np.load(savedir+'dist.npy')
 newcam_mtx=np.load(savedir+'newcam_mtx.npy')

@@ -10,6 +10,6 @@ def ImageDetection():
         detectXYZ=True
         #set calculateXYZ to enable real world XYZ to be calculated
         calculateXYZ=True
-        mainloop.capturefromPiCamera(imgdir,imgprefix,fullscreen,detectXYZ,calculateXYZ)
+        mainloop.main_loop().capturefromPiCamera(imgdir,imgprefix,fullscreen,detectXYZ,calculateXYZ)
 
 ImageDetection()

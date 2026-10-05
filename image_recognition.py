@@ -4,8 +4,8 @@ import numpy as np
 class image_recognition:
     
     def __init__(self,print_status=True, write_images=False,
-                 image_Path="\inputs",
-                 testing_Path="\tests",
+                 image_Path="inputs/",
+                 testing_Path="tests/",
                  preview_images=False, 
                  preview_autoclose=True,
                  print_img_labels=True):
@@ -30,8 +30,8 @@ class image_recognition:
 
     def test_objectDetect(self,bgFile,targetFile):
 
-        img=cv2.imread(self.TESTDIR+bgFile+".jpg")
-        bg=cv2.imread(self.TESTDIR+targetFile+".jpg")
+        bg=cv2.imread(self.TESTDIR+bgFile+".jpg")
+        img=cv2.imread(self.TESTDIR+targetFile+".jpg")
 
         self.run_detection(img,bg,True)
 
@@ -88,7 +88,7 @@ class image_recognition:
                 cy=int(M['m01']/M['m00'])
                 
                 self.printStatus("point number "+str(i))
-                self.printStatus(str(cx)+", "+str(y))
+                self.printStatus(str(cx)+", "+str(cy))
                 self.printStatus("x: "+str(x)+" y: "+str(y)+" w: "+str(w)+" h: "+str(h))
 
                 #draw retangle
@@ -436,7 +436,7 @@ class image_recognition:
 
         #Draw the Box       
         boxdraw = cv2.boxPoints(rect)
-        boxdraw = np.int0(boxdraw)
+        boxdraw = np.intp(boxdraw)
         cv2.drawContours(contour_img,[boxdraw],0,(0,0,255),3)
 
         # rotate img
@@ -447,7 +447,7 @@ class image_recognition:
 
         # rotate bounding box
         box = cv2.boxPoints(rect)      
-        pts = np.int0(cv2.transform(np.array([box]), M))[0]
+        pts = np.intp(cv2.transform(np.array([box]), M))[0]
         pts[pts < 0] = 0
 
         #re-establish width and height on rotated image

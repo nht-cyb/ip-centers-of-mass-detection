@@ -101,7 +101,7 @@ python initial_perspective_calibration.py
 
 It saves `rvec1.npy`, `tvec1.npy`, `R_mtx.npy`, `Rt.npy`, `P_mtx.npy` and `s_arr.npy` to `camera_data/`. It also prints each point's scaling factor and its error from the mean.
 
-> On the first run these files don't exist yet. The script creates a `camera_XYZ()` at the top, which tries to load them, so comment out that line (and set `calculatefromCam = False`) until the files are saved.
+> On later runs, once `s_arr.npy` exists, the script also prints the X, Y, Z that `camera_xyz.py` computes for each point, so you can compare them with your measurements.
 
 ### 3. Run live detection (Raspberry Pi)
 
@@ -145,10 +145,8 @@ The size limits (`MIN_AREA`, `MAX_AREA`) and `OtsuSensitivity` are tuned for 128
 
 ## Known issues
 
-- `camera_xyz.py` imports `image_recognition_singlecam`, but the file in this repo is `image_recognition.py`. Change the import (or rename the file) before running `main.py` or `initial_perspective_calibration.py`.
-- `main.py` calls `mainloop.capturefromPiCamera(...)` on the module. It should create the class first: `mainloop.main_loop().capturefromPiCamera(...)`.
-- `camera_data/` only contains the step 1 files. Run step 2 with `writeValues = True` before using world coordinates.
-- Some paths use Windows-style backslashes (for example `"\inputs/"`) or Raspberry Pi paths (`/home/pi/Desktop/Captures/`). Adjust them for your machine.
+- `camera_data/` only contains the step 1 files. Run step 2 with `writeValues = True` before using world coordinates in `main.py`.
+- `main.py` and `mainloop.py` save captures to `/home/pi/Desktop/Captures/` and need `picamera`, so they only run on a Raspberry Pi. Change `imgdir` for another location.
 - Taller objects (height > ¼ of their footprint) give larger errors, because the method assumes objects lie flat on the surface.
 
 ## References

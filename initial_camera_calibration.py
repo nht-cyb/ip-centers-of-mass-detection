@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 import glob
 
-workingdir="\calibration_images"
+workingdir="calibration_images/"
 savedir="camera_data/"
 
 # termination criteria
@@ -17,7 +17,7 @@ objp[:,:2] = np.mgrid[0:4,0:6].T.reshape(-1,2)*5
 # khoi tao mang chua diem tren ban co trong toan anh.
 objpoints = [] # 3d point trong khong gian thuc xyz
 imgpoints = [] # 2d points trong khong gian anh pixel
-images = glob.glob('calibration_images/*.jpg')
+images = glob.glob(workingdir+'*.jpg')
 
 win_name="Verify"
 cv2.namedWindow(win_name, cv2.WND_PROP_FULLSCREEN)
@@ -34,7 +34,7 @@ for fname in images:
     if ret == True:
         objpoints.append(objp)
         corners2=cv2.cornerSubPix(gray,corners, (11,11), (-1,-1), criteria)
-        imgpoints.append(corners)
+        imgpoints.append(corners2)
         # ve va hien thi cac goc
         cv2.drawChessboardCorners(img, (4,6), corners2, ret)
         cv2.imshow(win_name, img)
